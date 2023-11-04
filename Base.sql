@@ -1,6 +1,6 @@
 /*ADS PROYECTO FINAL*/
-CREATE DATABASE ADS;
-USE ADS;
+CREATE DATABASE sistema_gestion;
+USE sistema_gestion;
 
 /*TABLAS capa seguridad*/
 CREATE TABLE seguridad (
@@ -26,9 +26,11 @@ CREATE TABLE usuario(
     nombre_user varchar(200),
     pass_user varchar(200),
     fecha_registro varchar(200),
-    id_cod_empleado int
+    id_cod_empleado int,
+    id_rol int
     
 );
+
 
 
 /*TABLAS capa empleados*/
@@ -57,7 +59,7 @@ CREATE TABLE horario(
 
 /*TABLAS capa Mercaderia*/
 CREATE TABLE producto(
-	id_produto int primary key auto_increment,
+	id_producto int primary key auto_increment,
     sku_producto varchar(100),
     nombre_producto varchar(700),
     descripcion_producto varchar(500),
@@ -116,4 +118,12 @@ CREATE TABLE cliente(
     
 );
 
+ALTER TABLE seguridad ADD CONSTRAINT FK_seguridad_usuario FOREIGN KEY (id_user) REFERENCES usuario (id_user);
+ALTER TABLE usuario ADD CONSTRAINT FK_usuario_rol FOREIGN KEY (id_rol) REFERENCES rol (id_rol);
+ALTER TABLE usuario ADD CONSTRAINT FK_usuario_empleado FOREIGN KEY (id_cod_empleado) REFERENCES empleado (id_cod_empleado);
+ALTER TABLE horario ADD CONSTRAINT FK_horario_empleado FOREIGN KEY (id_cod_empleado) REFERENCES empleado (id_cod_empleado);
+ALTER TABLE compras ADD CONSTRAINT FK_compra_detalle_compra FOREIGN KEY (id_detalle_compra) REFERENCES detalle_compra (id_detalle_compra);
+ALTER TABLE compras ADD CONSTRAINT FK_compra_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente);
 
+ALTER TABLE detalle_compra ADD CONSTRAINT FK_detalle_compra_producto FOREIGN KEY (id_producto) REFERENCES producto (id_producto);
+ALTER TABLE detalle_compra ADD CONSTRAINT FK_detalle_compra_servicio FOREIGN KEY (id_servicio) REFERENCES servicios (id_servicio);
