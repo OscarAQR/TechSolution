@@ -1,5 +1,7 @@
 package com.techsolution.entity;
 
+import java.util.Arrays;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +37,7 @@ public class Producto {
 	private String fecha_ingreso_producto;
 	
 	@Column(name="imagen_producto")
-	private String imagen_producto;
+	private byte [] imagen_producto;
 	
 	@Column(name="categoria_producto")
 	private String categoria_producto;
@@ -103,11 +105,13 @@ public class Producto {
 		this.fecha_ingreso_producto = fecha_ingreso_producto;
 	}
 
-	public String getImagen_producto() {
+	 
+
+	public byte[] getImagen_producto() {
 		return imagen_producto;
 	}
 
-	public void setImagen_producto(String imagen_producto) {
+	public void setImagen_producto(byte[] imagen_producto) {
 		this.imagen_producto = imagen_producto;
 	}
 
@@ -132,9 +136,11 @@ public class Producto {
 		return "Producto [id_producto=" + id_producto + ", sku_producto=" + sku_producto + ", nombre_producto="
 				+ nombre_producto + ", descripcion_producto=" + descripcion_producto + ", precio_unitario="
 				+ precio_unitario + ", stock=" + stock + ", fecha_ingreso_producto=" + fecha_ingreso_producto
-				+ ", imagen_producto=" + imagen_producto + ", categoria_producto=" + categoria_producto
+				+ ", imagen_producto=" + Arrays.toString(imagen_producto) + ", categoria_producto=" + categoria_producto
 				+ ", proveedor_producto=" + proveedor_producto + "]";
 	}
+
+ 
 	
 	
 	
