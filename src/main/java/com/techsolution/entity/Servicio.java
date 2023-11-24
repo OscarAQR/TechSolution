@@ -30,7 +30,7 @@ public class Servicio {
 	@Column(name = "fecha_ingreso_servicio")
 	private String fecha_ingreso_servicio;
 	
-	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY) 
+	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER) 
 	private Cliente cliente;
 	
 	public Servicio() {

@@ -9,6 +9,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -25,7 +26,7 @@ public class DetalleCompra {
 	@Column(name = "cantidad_compra")
 	private int cantidad_compra;
 
-	@Column(name = "precio _compra")
+	@Column(name = "precio_compra")
 	private float precio_compra;
 	
 	@Column(name="impuesto_compra")
@@ -34,11 +35,11 @@ public class DetalleCompra {
 	@Column(name="descuento_compra")
 	private float descuento_compra;
 	
-	@OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
-	private List<Producto> producto;
+	 @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+	private Producto producto;
 	
-	@OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
-	private List<Servicio> servicio;
+	 @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+	private Servicio servicio;
 	
 	public DetalleCompra() {
 		
@@ -84,21 +85,19 @@ public class DetalleCompra {
 		this.descuento_compra = descuento_compra;
 	}
 
-	 
-
-	public List<Producto> getProducto() {
+	public Producto getProducto() {
 		return producto;
 	}
 
-	public void setProducto(List<Producto> producto) {
+	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
 
-	public List<Servicio> getServicio() {
+	public Servicio getServicio() {
 		return servicio;
 	}
 
-	public void setServicio(List<Servicio> servicio) {
+	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
 	}
 
@@ -108,6 +107,9 @@ public class DetalleCompra {
 				+ ", precio_compra=" + precio_compra + ", impuesto_compra=" + impuesto_compra + ", descuento_compra="
 				+ descuento_compra + ", producto=" + producto + ", servicio=" + servicio + "]";
 	}
+
+	 
+ 
 
  
 	

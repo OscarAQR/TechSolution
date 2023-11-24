@@ -25,12 +25,12 @@ public class Compra {
 	@Column(name="metodo_pago")
 	private String metodo_pago;
 	
-	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY) 
+	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER) 
 	private Cliente cliente;
 	
 	
-	@OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY) 
-	private List<DetalleCompra> detalleCompra;
+	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER) 
+	private DetalleCompra detalleCompra;
 	
 	public Compra() {
 		
@@ -68,11 +68,11 @@ public class Compra {
 		this.cliente = cliente;
 	}
 
-	public List<DetalleCompra> getDetalleCompra() {
+	public DetalleCompra getDetalleCompra() {
 		return detalleCompra;
 	}
 
-	public void setDetalleCompra(List<DetalleCompra> detalleCompra) {
+	public void setDetalleCompra(DetalleCompra detalleCompra) {
 		this.detalleCompra = detalleCompra;
 	}
 
@@ -81,6 +81,8 @@ public class Compra {
 		return "Compra [id_compra=" + id_compra + ", descripcion_compra=" + descripcion_compra + ", metodo_pago="
 				+ metodo_pago + ", cliente=" + cliente + ", detalleCompra=" + detalleCompra + "]";
 	}
+
+	 
 
 	 
  
